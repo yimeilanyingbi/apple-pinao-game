@@ -1,0 +1,101 @@
+/* 全局样式重置 */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: system-ui;
+}
+
+/* 页面主体样式 */
+body {
+    background: #f5f7fa;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+}
+
+/* 倒计时计时器样式 */
+.timer {
+    font-size: 60px;
+    color: red;
+    font-weight: 700;
+    margin: 10px 0;
+}
+
+/* 得分显示样式 */
+.score {
+    font-size: 26px;
+    margin-bottom: 20px;
+}
+
+/* 游戏主容器（网格） */
+.game-box {
+    --cell-size: 120px; /* 格子尺寸CSS变量 */
+    position: relative;
+    display: grid;
+    grid-template: repeat(6, var(--cell-size)) / repeat(4, var(--cell-size)); /* 6行4列网格 */
+    gap: 2px; /* 网格间隙 */
+    background: #ccc;
+    padding: 2px;
+    overflow: hidden;
+}
+
+/* 单个网格格子 */
+.cell {
+    background: #fff;
+}
+
+/* 红球样式 */
+.red-ball {
+    width: calc(var(--cell-size) * 0.666); /* 格子尺寸的2/3 */
+    height: calc(var(--cell-size) * 0.666);
+    background: red;
+    border-radius: 50%; /* 圆形 */
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%); /* 居中 */
+    cursor: pointer; /* 鼠标指针样式 */
+    box-shadow: 0 4px 10px rgba(0,0,0,0.2); /* 阴影效果 */
+    transition: top 0.3s ease-out, opacity 0.2s ease, background-color 0.15s ease; /* 过渡动画 */
+    z-index: 10; /* 层级高于格子 */
+}
+
+/* 小球被点击后的样式 */
+.red-ball.clicked {
+    background: #ff6666; /* 浅红色 */
+}
+
+/* 小球点击按下效果 */
+.red-ball:active {
+    transform: translate(-50%, -50%) scale(0.9); /* 缩小10% */
+}
+
+/* 游戏结束遮罩层 */
+.mask {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0,0,0,0.5); /* 半透明黑色 */
+    z-index: 998; /* 低于弹窗 */
+    display: none; /* 默认隐藏 */
+}
+
+/* 游戏结束弹窗 */
+.game-over {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%); /* 居中 */
+    background: #fff;
+    padding: 40px;
+    border-radius: 16px; /* 圆角 */
+    box-shadow: 0 0 30px rgba(0,0,0,0.2); /* 弹窗阴影 */
+    text-align: center;
+    font-size: 30px;
+    display: none; /* 默认隐藏 */
+    z-index: 999; /* 最高层级 */
+}
