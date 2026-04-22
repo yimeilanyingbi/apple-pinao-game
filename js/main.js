@@ -11,8 +11,7 @@ import { initBalls } from './ball.js';
  * 确保DOM元素加载完毕
  */
 window.onload = () => {
-    initGrid(); // 初始化游戏网格
-    initBalls(); // 初始化初始小球
-    bindClickEvent(); // 绑定点击事件
-    console.log('✅ 游戏初始化完成（已修复所有安全隐患）');
+    initGrid();
+    initBalls();
+    bindClickEvent();
 };
