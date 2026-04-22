@@ -131,6 +131,11 @@ MIT License
 
 ## 更新日志
 
+### v1.0.1
+- 🐛 修复：初始小球不显示 Bug
+- 🔧 重构：拆分 initGrid 为 initCanvas 和 render，降低模块耦合
+- 📝 新增：统一初始化入口 initGame()，提高代码容错性
+
 ### v1.0.0
 - ✨ 初始版本
 - ✅ Canvas渲染实现
