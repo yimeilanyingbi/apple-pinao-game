@@ -6,7 +6,7 @@
 import { getConfig, ANIMATION, COLORS, GAME_CONFIG } from './config.js';
 import { dom } from './dom.js';
 import { isGameStarted, isGameOver, startCountDown } from './timer.js';
-import { balls, moveAllBalls, addNewBallTop, destroyAllBalls as destroyAllBallsInBallModule, processBallAnimations, COLOR_RGB, lerpColor } from './ball.js';
+import { balls, initBalls, moveAllBalls, addNewBallTop, destroyAllBalls as destroyAllBallsInBallModule, processBallAnimations, COLOR_RGB, lerpColor } from './ball.js';
 
 // 私有化分数 - 防止外部篡改，仅通过getScore获取
 let _score = 0;
@@ -107,7 +107,7 @@ function addScore() {
  * 初始化游戏Canvas
  * 设置Canvas尺寸和上下文
  */
-export function initGrid() {
+export function initCanvas() {
     gameConfig = getConfig();
     const { rows, cols, cellSize, gap, isMobile } = gameConfig;
 
@@ -119,8 +119,23 @@ export function initGrid() {
     dom.box.height = rows * (cellSize + gap) + gap;
 
     ctx = dom.box.getContext('2d');
+}
 
+export function render() {
+    if (!ctx) return;
     drawGrid();
+    drawBalls();
+}
+
+export function initGame() {
+    initBalls();
+    initCanvas();
+    render();
+}
+
+export function initGrid() {
+    initCanvas();
+    render();
 }
 
 export function bindClickEvent() {

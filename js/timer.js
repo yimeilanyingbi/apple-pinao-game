@@ -5,8 +5,7 @@
  */
 import { dom } from './dom.js';
 import { INIT_TIME } from './config.js';
-import { destroyAllBalls, initGrid, bindClickEvent, unbindClickEvent, resetScore } from './game.js';
-import { initBalls } from './ball.js';
+import { destroyAllBalls, initGame, bindClickEvent, unbindClickEvent, resetScore } from './game.js';
 
 // 私有化变量 - 禁止外部直接修改，保证数据安全
 /** 剩余时间（秒） */
@@ -109,20 +108,15 @@ export function restartGame() {
     _isStart = false;
     _isEnded = false;
     _gameStartTime = 0;
-    
+
     dom.timer.textContent = _time.toFixed(2);
     dom.mask.style.display = 'none';
     dom.over.style.display = 'none';
-    
+
     unbindClickEvent();
     destroyAllBalls();
     resetScore();
-    
-    if (dom.box) {
-        dom.box.innerHTML = '';
-    }
-    
-    initGrid();
-    initBalls();
+
+    initGame();
     bindClickEvent();
 }
