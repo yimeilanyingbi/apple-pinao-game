@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>钢琴块红球</title>
+    <link rel="stylesheet" href="css/style.css"> <!-- 引入样式文件 -->
+</head>
+<body>
+    <!-- 倒计时计时器 -->
+    <div class="timer" id="timer">20.00</div>
+    <!-- 得分显示区域 -->
+    <div class="score">得分：<span id="score">0</span></div>
+    <!-- 游戏主容器（Canvas） -->
+    <canvas class="game-box" id="box"></canvas>
+
+    <!-- 游戏结束遮罩 -->
+    <div class="mask" id="mask"></div>
+
+    <!-- 游戏结束弹窗 -->
+    <div class="game-over" id="over">
+        游戏结束<br>
+        最终得分：<span id="final"></span><br>
+        CPS：<span id="cps"></span><br>
+        击败全网98%玩家<br>
+        <button id="restart-btn">重新开始</button>
+    </div>
+
+    <!-- 游戏主逻辑（模块化引入） -->
+    <script type="module" src="js/main.js"></script>
+</body>
+</html>

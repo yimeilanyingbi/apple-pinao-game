@@ -1,0 +1,182 @@
+/* 全局样式重置 */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: system-ui;
+}
+
+/* 页面主体样式 */
+body {
+    background: #f5f7fa;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    min-height: 100vh;
+}
+
+/* 倒计时计时器样式 */
+.timer {
+    font-size: 60px;
+    color: red;
+    font-weight: 700;
+    margin: 10px 0;
+}
+
+/* 得分显示样式 */
+.score {
+    font-size: 26px;
+    margin-bottom: 20px;
+}
+
+/* 游戏主容器（Canvas） */
+.game-box {
+    --cell-size: 120px; /* 格子尺寸CSS变量 */
+    position: relative;
+    background: #ccc;
+    padding: 2px;
+    overflow: hidden;
+}
+
+/* 单个网格格子 */
+.cell {
+    background: #fff;
+}
+
+/* 红球样式 */
+.red-ball {
+    width: calc(var(--cell-size) * 0.666); /* 格子尺寸的2/3 */
+    height: calc(var(--cell-size) * 0.666);
+    background: red;
+    border-radius: 50%; /* 圆形 */
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%); /* 居中 */
+    cursor: pointer; /* 鼠标指针样式 */
+    box-shadow: 0 4px 10px rgba(0,0,0,0.2); /* 阴影效果 */
+    transition: top 0.3s ease-out, opacity 0.2s ease, background-color 0.15s ease; /* 过渡动画 */
+    z-index: 10; /* 层级高于格子 */
+}
+
+/* 小球被点击后的样式 */
+.red-ball.clicked {
+    background: #ff6666; /* 浅红色 */
+}
+
+/* 小球点击按下效果 */
+.red-ball:active {
+    transform: translate(-50%, -50%) scale(0.9); /* 缩小10% */
+}
+
+/* 游戏结束遮罩层 */
+.mask {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0,0,0,0.5); /* 半透明黑色 */
+    z-index: 998; /* 低于弹窗 */
+    display: none; /* 默认隐藏 */
+}
+
+/* 游戏结束弹窗 */
+.game-over {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%); /* 居中 */
+    background: #fff;
+    padding: 40px;
+    border-radius: 16px; /* 圆角 */
+    box-shadow: 0 0 30px rgba(0,0,0,0.2); /* 弹窗阴影 */
+    text-align: center;
+    font-size: 30px;
+    display: none; /* 默认隐藏 */
+    z-index: 999; /* 最高层级 */
+}
+
+/* 重新开始按钮 */
+#restart-btn {
+    margin-top: 20px;
+    padding: 12px 24px;
+    font-size: 18px;
+    font-weight: 600;
+    color: #fff;
+    background: red;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.1s ease;
+}
+
+#restart-btn:hover {
+    background: #ff3333;
+}
+
+#restart-btn:active {
+    transform: scale(0.95);
+}
+
+/* 移动端适配（屏幕宽度小于600px） */
+@media screen and (max-width: 600px) {
+    body {
+        padding: 10px;
+    }
+
+    .timer {
+        font-size: 40px;
+        margin: 5px 0;
+    }
+
+    .score {
+        font-size: 20px;
+        margin-bottom: 10px;
+    }
+
+    .game-box {
+        --cell-size: var(--mobile-cell-size, 70px);
+    }
+
+    .red-ball {
+        width: calc(var(--mobile-cell-size, 70px) * 0.666);
+        height: calc(var(--mobile-cell-size, 70px) * 0.666);
+    }
+
+    .game-over {
+        padding: 25px;
+        font-size: 22px;
+        width: 80%;
+        max-width: 300px;
+    }
+
+    #restart-btn {
+        margin-top: 15px;
+        padding: 10px 20px;
+        font-size: 16px;
+    }
+}
+
+/* 超小屏幕适配（屏幕宽度小于400px） */
+@media screen and (max-width: 400px) {
+    .timer {
+        font-size: 32px;
+    }
+
+    .score {
+        font-size: 18px;
+    }
+
+    .red-ball {
+        width: calc(var(--mobile-cell-size, 60px) * 0.666);
+        height: calc(var(--mobile-cell-size, 60px) * 0.666);
+    }
+
+    .game-over {
+        padding: 20px;
+        font-size: 18px;
+    }
+}
