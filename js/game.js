@@ -38,6 +38,7 @@ export function resetScore() {
 
 function animate() {
     const hasActiveAnimations = processBallAnimations();
+    drawGrid();
     drawBalls();
 
     if (hasActiveAnimations) {
@@ -52,34 +53,37 @@ function drawGrid() {
 
     const { rows, cols, cellSize, gap } = gameConfig;
 
+    // 只在必要时清除整个画布
     ctx.clearRect(0, 0, dom.box.width, dom.box.height);
 
+    // 绘制背景
     ctx.fillStyle = '#ccc';
     ctx.fillRect(0, 0, dom.box.width, dom.box.height);
 
+    // 绘制网格
     ctx.fillStyle = '#fff';
+    ctx.beginPath();
     for (let row = 0; row < rows; row++) {
         for (let col = 0; col < cols; col++) {
             const x = col * (cellSize + gap) + gap;
             const y = row * (cellSize + gap) + gap;
-            ctx.fillRect(x, y, cellSize, cellSize);
+            ctx.rect(x, y, cellSize, cellSize);
         }
     }
+    ctx.fill();
 }
 
 function drawBalls() {
     if (!ctx) return;
 
-    drawGrid();
-
     const { cellSize } = gameConfig;
     const ballRadius = cellSize * 0.333;
 
+    // 按颜色和透明度分组绘制，减少状态切换
+    const ballsByColorAndOpacity = {};
+    
     balls.forEach(ball => {
         if (ball.opacity <= 0) return;
-
-        const x = ball.currentX;
-        const y = ball.currentY;
 
         let color;
         if (ball.isFlashing) {
@@ -89,15 +93,39 @@ function drawBalls() {
         } else {
             color = ball.clicked ? COLORS.BALL_LIGHT : COLORS.BALL_NORMAL;
         }
-        ctx.fillStyle = color;
-        ctx.globalAlpha = ball.opacity;
 
-        ctx.beginPath();
-        ctx.arc(x, y, ballRadius, 0, Math.PI * 2);
-        ctx.fill();
+        // 为透明度创建分组键，使用固定小数位减少分组数量
+        const opacityKey = ball.opacity.toFixed(2);
+        const key = `${color}_${opacityKey}`;
 
-        ctx.globalAlpha = 1;
+        if (!ballsByColorAndOpacity[key]) {
+            ballsByColorAndOpacity[key] = {
+                color,
+                opacity: ball.opacity,
+                balls: []
+            };
+        }
+        ballsByColorAndOpacity[key].balls.push(ball);
     });
+
+    // 批量绘制相同颜色和透明度的小球
+    Object.values(ballsByColorAndOpacity).forEach(group => {
+        ctx.fillStyle = group.color;
+        ctx.globalAlpha = group.opacity;
+        ctx.beginPath();
+        
+        group.balls.forEach(ball => {
+            const x = ball.currentX;
+            const y = ball.currentY;
+            ctx.moveTo(x + ballRadius, y);
+            ctx.arc(x, y, ballRadius, 0, Math.PI * 2);
+        });
+        
+        ctx.fill();
+    });
+
+    // 重置globalAlpha
+    ctx.globalAlpha = 1;
 }
 
 function addScore() {
@@ -151,27 +179,28 @@ export function bindClickEvent() {
 
         if (clickedCol < 0 || clickedCol >= cols) return;
 
-        const colBalls = balls.filter(b =>
-            !b.clicked &&
-            b.col === clickedCol
-        );
-
+        // 筛选当前列的未点击小球
+        const colBalls = balls.filter(b => !b.clicked && b.col === clickedCol);
         if (colBalls.length === 0) return;
 
+        // 找出当前列最底部的球
         let bottomBall = colBalls[0];
         let maxRow = bottomBall.row;
 
         for (let i = 1; i < colBalls.length; i++) {
-            const currentRow = colBalls[i].row;
-            if (currentRow > maxRow) {
-                maxRow = currentRow;
+            if (colBalls[i].row > maxRow) {
+                maxRow = colBalls[i].row;
                 bottomBall = colBalls[i];
             }
         }
 
-        const validBalls = balls.filter(b => !b.clicked);
-        if (validBalls.length === 0) return;
-        const globalMaxRow = Math.max(...validBalls.map(b => b.row));
+        // 找出所有未点击小球中的最大行号
+        let globalMaxRow = -1;
+        for (const ball of balls) {
+            if (!ball.clicked && ball.row > globalMaxRow) {
+                globalMaxRow = ball.row;
+            }
+        }
 
         if (maxRow < globalMaxRow) return;
 
