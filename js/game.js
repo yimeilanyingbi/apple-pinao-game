@@ -163,11 +163,6 @@ export function initGame() {
     render();
 }
 
-export function initGrid() {
-    initCanvas();
-    render();
-}
-
 export function bindClickEvent() {
     clickHandler = (e) => {
         const { cellSize, gap, cols } = gameConfig;
