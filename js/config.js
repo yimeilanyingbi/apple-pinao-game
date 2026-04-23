@@ -14,7 +14,7 @@ export const GAP = 2;
 /** 格子总间隙（尺寸+间隙，用于定位计算）- 桌面端 */
 export const CELL_GAP = CELL_SIZE + GAP;
 /** 游戏初始倒计时时间（秒） */
-export const INIT_TIME = 20.00;
+export const INIT_TIME = 5.00;
 /** 移动端阈值（屏幕宽度小于此值时使用移动端配置） */
 export const MOBILE_THRESHOLD = 600;
 /** 移动端单个格子尺寸（px） */
@@ -34,18 +34,30 @@ export const ANIMATION = {
     COLOR_TRANSITION_SPEED: 0.03
 };
 
+/** 游戏结束配置 */
+export const GAME_OVER = {
+    /** 时间到显示持续时间（毫秒） */
+    TIME_UP_DISPLAY_DURATION: 4000,
+    /** 时间到闪烁持续时间（毫秒） */
+    TIME_UP_FLASH_DURATION: 2000,
+    /** 时间到颜色切换频率（毫秒） */
+    TIME_UP_FLASH_INTERVAL: 250
+};
+
 /** 颜色配置 */
 export const COLORS = {
     /** 普通小球颜色 */
     BALL_NORMAL: 'red',
     /** 点击后浅红球颜色 */
-    BALL_LIGHT: '#ff6666'
+    BALL_LIGHT: '#ff6666',
+    /** 闪烁时的颜色 */
+    BALL_FLASH: 'white'
 };
 
 /** 游戏配置开关 */
 export const GAME_CONFIG = {
     /** 是否使用平滑颜色过渡（false为瞬间改颜色） */
-    USE_SMOOTH_COLOR_TRANSITION: false
+    USE_SMOOTH_COLOR_TRANSITION: true
 };
 
 /**

@@ -213,3 +213,45 @@ export function processBallAnimations() {
 function easeOutCubic(t) {
     return 1 - Math.pow(1 - t, 3);
 }
+
+/**
+ * 让所有红球闪烁
+ * @param {number} duration - 闪烁持续时间（毫秒）
+ * @param {number} interval - 颜色切换间隔时间（毫秒）
+ */
+export function flashAllBalls(duration, interval) {
+    let flashIndex = 0;
+    let isFlashing = false;
+    const originalStates = [];
+    const totalToggles = Math.floor(duration / interval);
+
+    // 保存所有球的原始状态
+    balls.forEach(ball => {
+        originalStates.push({
+            clicked: ball.clicked,
+            isFlashing: ball.isFlashing
+        });
+    });
+
+    function toggleColor() {
+        // 让所有球都参与闪烁，无论之前的状态如何
+        balls.forEach(ball => {
+            ball.isFlashing = isFlashing;
+        });
+
+        isFlashing = !isFlashing;
+        flashIndex++;
+
+        if (flashIndex < totalToggles) {
+            setTimeout(toggleColor, interval);
+        } else {
+            // 闪烁结束后恢复所有球的状态，但保留在闪烁期间的点击
+            balls.forEach((ball, index) => {
+                // 只恢复isFlashing状态，保留clicked状态（可能在闪烁期间被点击）
+                ball.isFlashing = originalStates[index].isFlashing;
+            });
+        }
+    }
+
+    toggleColor();
+}

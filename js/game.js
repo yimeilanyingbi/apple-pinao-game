@@ -5,7 +5,7 @@
  */
 import { getConfig, ANIMATION, COLORS, GAME_CONFIG } from './config.js';
 import { dom } from './dom.js';
-import { isGameStarted, isGameOver, startCountDown } from './timer.js';
+import { isGameStarted, isGameOver, isClickAllowed, startCountDown } from './timer.js';
 import { balls, initBalls, moveAllBalls, addNewBallTop, destroyAllBalls as destroyAllBallsInBallModule, processBallAnimations, COLOR_RGB, lerpColor } from './ball.js';
 
 // 私有化分数 - 防止外部篡改，仅通过getScore获取
@@ -82,7 +82,9 @@ function drawBalls() {
         const y = ball.currentY;
 
         let color;
-        if (GAME_CONFIG.USE_SMOOTH_COLOR_TRANSITION) {
+        if (ball.isFlashing) {
+            color = COLORS.BALL_FLASH;
+        } else if (GAME_CONFIG.USE_SMOOTH_COLOR_TRANSITION) {
             color = lerpColor(COLOR_RGB.NORMAL, COLOR_RGB.LIGHT, ball.colorProgress);
         } else {
             color = ball.clicked ? COLORS.BALL_LIGHT : COLORS.BALL_NORMAL;
@@ -141,7 +143,7 @@ export function initGrid() {
 export function bindClickEvent() {
     clickHandler = (e) => {
         const { cellSize, gap, cols } = gameConfig;
-        if (isGameOver()) return;
+        if (!isClickAllowed()) return;
 
         const boxRect = dom.box.getBoundingClientRect();
         const clickX = e.clientX - boxRect.left;
