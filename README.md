@@ -11,7 +11,7 @@ A Canvas-based casual click game where players need to click on falling red ball
 
 - ✅ Canvas rendering for smooth performance
 - ✅ Responsive design, supporting mobile devices
-- ✅ Vertical判定, click on the column to judge
+- ✅ Vertical judgment, click on the column to judge
 - ✅ Only click the bottom red ball
 - ✅ Color transition effect (configurable)
 - ✅ Smooth animation effects
@@ -162,7 +162,7 @@ MIT License
 - ✨ Initial version
 - ✅ Canvas rendering implementation
 - ✅ Responsive design
-- ✅ Vertical判定
+- ✅ Vertical judgment
 - ✅ Color transition effects
 - ✅ Game over statistics
 - ✅ Restart functionality
