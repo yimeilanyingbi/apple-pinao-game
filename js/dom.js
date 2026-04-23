@@ -12,4 +12,7 @@ export const dom = {
     final: document.getElementById('final') || document.createElement('span'),
     cps: document.getElementById('cps') || document.createElement('span'),
     mask: document.getElementById('mask') || document.createElement('div'),
+    startMenu: document.getElementById('start-menu') || document.createElement('div'),
+    startBtn: document.getElementById('start-btn') || document.createElement('button'),
+    settingsBtn: document.getElementById('settings-btn') || document.createElement('button'),
 };

@@ -160,6 +160,71 @@ body {
     }
 }
 
+/* 开始菜单 */
+.start-menu {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0,0,0,0.5); /* 黑色半透明背景 */
+    z-index: 999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.start-menu-content {
+    background: #fff;
+    padding: 40px;
+    border-radius: 16px;
+    box-shadow: 0 0 30px rgba(0,0,0,0.2);
+    text-align: center;
+    width: 90%;
+    max-width: 400px;
+}
+
+.start-menu-content h1 {
+    font-size: 32px;
+    margin-bottom: 30px;
+    color: #333;
+}
+
+.start-menu-content button {
+    display: block;
+    width: 100%;
+    padding: 14px;
+    font-size: 18px;
+    font-weight: 600;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin-bottom: 15px;
+}
+
+#start-btn {
+    background: red;
+    color: #fff;
+}
+
+#start-btn:hover {
+    background: #ff3333;
+}
+
+#settings-btn {
+    background: #f0f0f0;
+    color: #333;
+}
+
+#settings-btn:hover {
+    background: #e0e0e0;
+}
+
+.start-menu-content button:active {
+    transform: scale(0.95);
+}
+
 /* 超小屏幕适配（屏幕宽度小于400px） */
 @media screen and (max-width: 400px) {
     .timer {
