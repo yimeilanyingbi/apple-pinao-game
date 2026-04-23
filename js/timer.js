@@ -176,3 +176,23 @@ export function restartGame() {
     bindClickEvent();
     // 不立即开始倒计时，等待用户点击
 }
+
+/**
+ * 重置游戏状态
+ * 用于返回开始菜单时重置所有游戏状态
+ */
+export function resetGameState() {
+    _time = INIT_TIME;
+    _isStart = false;
+    _isEnded = false;
+    _gameEndTime = 0;
+    _endGameClicks = 0;
+    _gameStartTime = 0;
+
+    if (animationFrameId) {
+        cancelAnimationFrame(animationFrameId);
+        animationFrameId = null;
+    }
+
+    dom.timer.textContent = _time.toFixed(2);
+}

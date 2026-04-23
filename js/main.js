@@ -2,8 +2,8 @@
  * 游戏入口模块
  * @module main
  */
-import { initGame, bindClickEvent, unbindClickEvent } from './game.js';
-import { startCountDown, restartGame } from './timer.js';
+import { initGame, bindClickEvent, unbindClickEvent, resetScore } from './game.js';
+import { startCountDown, restartGame, resetGameState } from './timer.js';
 import { dom } from './dom.js';
 import { INIT_TIME } from './config.js';
 
@@ -22,6 +22,13 @@ function backToMenu() {
     dom.over.style.display = 'none';
     dom.mask.style.display = 'none';
     unbindClickEvent();
+    
+    // 重置游戏状态
+    resetGameState();
+    resetScore();
+    
+    initGame(); // 重新初始化游戏，生成红球
+    bindClickEvent();
     dom.startMenu.style.display = 'flex';
 }
 
