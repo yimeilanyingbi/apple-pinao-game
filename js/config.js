@@ -14,7 +14,24 @@ export const GAP = 2;
 /** 格子总间隙（尺寸+间隙，用于定位计算）- 桌面端 */
 export const CELL_GAP = CELL_SIZE + GAP;
 /** 游戏初始倒计时时间（秒） */
-export const INIT_TIME = 20.00;
+let _initTime = 20.00;
+
+/**
+ * 获取游戏初始时间
+ * @returns {number} 初始时间（秒）
+ */
+export function getInitTime() {
+    return _initTime;
+}
+
+/**
+ * 设置游戏初始时间
+ * @param {number} time - 初始时间（秒）
+ */
+export function setInitTime(time) {
+    _initTime = time;
+}
+
 /** 移动端阈值（屏幕宽度小于此值时使用移动端配置） */
 export const MOBILE_THRESHOLD = 600;
 /** 移动端单个格子尺寸（px） */
@@ -33,6 +50,25 @@ export const ANIMATION = {
     /** 点击后颜色过渡到浅红的速度（值越大越快） */
     COLOR_TRANSITION_SPEED: 0.03
 };
+
+// 可修改的动画配置
+let _ballSpeed = ANIMATION.BALL_SPEED;
+
+/**
+ * 获取小球下落速度
+ * @returns {number} 下落速度
+ */
+export function getBallSpeed() {
+    return _ballSpeed;
+}
+
+/**
+ * 设置小球下落速度
+ * @param {number} speed - 下落速度
+ */
+export function setBallSpeed(speed) {
+    _ballSpeed = speed;
+}
 
 /** 游戏结束配置 */
 export const GAME_OVER = {

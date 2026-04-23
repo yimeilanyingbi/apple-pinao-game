@@ -4,13 +4,13 @@
  * @module timer
  */
 import { dom } from './dom.js';
-import { INIT_TIME, GAME_OVER } from './config.js';
+import { getInitTime, GAME_OVER } from './config.js';
 import { destroyAllBalls, initGame, bindClickEvent, unbindClickEvent, resetScore } from './game.js';
 import { flashAllBalls } from './ball.js';
 
 // 私有化变量 - 禁止外部直接修改，保证数据安全
 /** 剩余时间（秒） */
-let _time = INIT_TIME;
+let _time = getInitTime();
 /** 游戏是否已开始 */
 let _isStart = false;
 /** 游戏是否已结束 */
@@ -157,7 +157,7 @@ export function stopGame() {
  * 重新开始游戏
  */
 export function restartGame() {
-    _time = INIT_TIME;
+    _time = getInitTime();
     _isStart = false;
     _isEnded = false;
     _gameEndTime = 0;
@@ -182,7 +182,7 @@ export function restartGame() {
  * 用于返回开始菜单时重置所有游戏状态
  */
 export function resetGameState() {
-    _time = INIT_TIME;
+    _time = getInitTime();
     _isStart = false;
     _isEnded = false;
     _gameEndTime = 0;

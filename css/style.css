@@ -176,11 +176,61 @@ body {
 .settings-item {
     margin-bottom: 20px;
     text-align: left;
+    display: flex;
+    align-items: center;
+    gap: 10px;
 }
 
 .settings-item label {
     font-size: 18px;
     color: #333;
+    min-width: 100px;
+}
+
+.settings-item input[type="number"] {
+    padding: 8px 12px;
+    font-size: 16px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    width: 80px;
+}
+
+.settings-item select {
+    padding: 8px 12px;
+    font-size: 16px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    width: 120px;
+}
+
+.settings-item span {
+    font-size: 16px;
+    color: #333;
+}
+
+.speed-hint {
+    font-size: 14px;
+    color: #666;
+    margin-left: 10px;
+}
+
+.hint-icon {
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    line-height: 20px;
+    text-align: center;
+    background: #f0f0f0;
+    color: #333;
+    border-radius: 50%;
+    font-weight: bold;
+    cursor: help;
+    transition: all 0.2s ease;
+}
+
+.hint-icon:hover {
+    background: #e0e0e0;
+    transform: scale(1.1);
 }
 
 #back-from-settings-btn {

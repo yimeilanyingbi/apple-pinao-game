@@ -3,7 +3,7 @@
  * 负责小球数据结构、颜色处理、小球创建和管理
  * @module ball
  */
-import { getConfig, ANIMATION, GAME_CONFIG } from './config.js';
+import { getConfig, ANIMATION, GAME_CONFIG, getBallSpeed } from './config.js';
 
 /** 预计算颜色RGB值（避免每次创建临时Canvas） */
 export const COLOR_RGB = {
@@ -171,10 +171,17 @@ export function processBallAnimations() {
         if (ball.isAnimating) {
             hasActiveAnimations = true;
 
-            ball.animationProgress += ANIMATION.BALL_SPEED;
-            if (ball.animationProgress >= 1) {
+            const speed = getBallSpeed();
+            if (speed >= 1.0) {
+                // 速度超过1.0时，瞬间完成动画
                 ball.animationProgress = 1;
                 ball.isAnimating = false;
+            } else {
+                ball.animationProgress += speed;
+                if (ball.animationProgress >= 1) {
+                    ball.animationProgress = 1;
+                    ball.isAnimating = false;
+                }
             }
 
             const progress = easeOutCubic(ball.animationProgress);
