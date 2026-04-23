@@ -121,6 +121,28 @@ body {
     transform: scale(0.95);
 }
 
+/* 返回开始菜单按钮 */
+#back-to-menu-btn {
+    margin-top: 10px;
+    padding: 12px 24px;
+    font-size: 18px;
+    font-weight: 600;
+    color: #333;
+    background: #f0f0f0;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.1s ease;
+}
+
+#back-to-menu-btn:hover {
+    background: #e0e0e0;
+}
+
+#back-to-menu-btn:active {
+    transform: scale(0.95);
+}
+
 /* 移动端适配（屏幕宽度小于600px） */
 @media screen and (max-width: 600px) {
     body {
@@ -155,6 +177,12 @@ body {
 
     #restart-btn {
         margin-top: 15px;
+        padding: 10px 20px;
+        font-size: 16px;
+    }
+
+    #back-to-menu-btn {
+        margin-top: 10px;
         padding: 10px 20px;
         font-size: 16px;
     }

@@ -174,4 +174,5 @@ export function restartGame() {
 
     initGame();
     bindClickEvent();
+    // 不立即开始倒计时，等待用户点击
 }
