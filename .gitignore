@@ -22,3 +22,7 @@ tmp/
 *.tar.gz
 *.bak
 *.old
+
+# 任务文件
+*.task
+*.task.json
