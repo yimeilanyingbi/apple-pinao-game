@@ -14,7 +14,7 @@ export const GAP = 2;
 /** 格子总间隙（尺寸+间隙，用于定位计算）- 桌面端 */
 export const CELL_GAP = CELL_SIZE + GAP;
 /** 游戏初始倒计时时间（秒） */
-export const INIT_TIME = 5.00;
+export const INIT_TIME = 20.00;
 /** 移动端阈值（屏幕宽度小于此值时使用移动端配置） */
 export const MOBILE_THRESHOLD = 600;
 /** 移动端单个格子尺寸（px） */
