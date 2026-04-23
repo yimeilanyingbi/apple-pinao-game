@@ -1,0 +1,24 @@
+# 编辑器自动生成的文件
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+
+# 系统文件
+.DS_Store
+Thumbs.db
+
+# 依赖、打包、缓存
+node_modules/
+dist/
+build/
+*.log
+tmp/
+
+# 压缩包、备份
+*.zip
+*.rar
+*.tar.gz
+*.bak
+*.old
