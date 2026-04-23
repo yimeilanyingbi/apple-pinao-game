@@ -143,6 +143,19 @@ MIT License
 
 ## Changelog
 
+### v1.0.3
+- ✨ Added: Start menu UI with start game and settings buttons
+- ✨ Added: Settings page UI with game time and ball speed configuration
+- ✨ Added: Game over screen with back to menu button
+- 📱 Improved: Responsive design with dynamic grid size calculation
+- 🔧 Added: Window resize event listener to handle screen size changes
+- 🚀 Optimized: Canvas rendering performance with batch drawing and grouping
+- 🗑️ Cleaned: Removed redundant code and improved code structure
+- 💾 Fixed: Memory management issues with proper event unbinding
+- ⚙️ Added: Ball speed configuration in settings page
+- 🎯 Improved: Speed validation to handle extreme values (0.01-2.0 range)
+- ℹ️ Added: Speed hint with question mark icon for user guidance
+
 ### v1.0.2
 - ✨ Added: "Time's up" prompt when game ends
 - ✨ Added: Red ball flashing effect when game ends to improve visual reminder
