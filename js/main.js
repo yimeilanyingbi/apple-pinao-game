@@ -33,11 +33,29 @@ function backToMenu() {
 }
 
 /**
+ * 进入设置页面
+ */
+function openSettings() {
+    dom.startMenu.style.display = 'none';
+    dom.settingsMenu.style.display = 'flex';
+}
+
+/**
+ * 从设置页面返回开始菜单
+ */
+function backFromSettings() {
+    dom.settingsMenu.style.display = 'none';
+    dom.startMenu.style.display = 'flex';
+}
+
+/**
  * 绑定菜单事件
  */
 function bindMenuEvents() {
     dom.startBtn.addEventListener('click', startGame);
+    dom.settingsBtn.addEventListener('click', openSettings);
     dom.backToMenuBtn.addEventListener('click', backToMenu);
+    dom.backFromSettingsBtn.addEventListener('click', backFromSettings);
 }
 
 window.onload = () => {

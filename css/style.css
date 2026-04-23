@@ -143,6 +143,68 @@ body {
     transform: scale(0.95);
 }
 
+/* 设置菜单 */
+.settings-menu {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0,0,0,0.5); /* 黑色半透明背景 */
+    z-index: 999;
+    display: none;
+    align-items: center;
+    justify-content: center;
+}
+
+.settings-menu-content {
+    background: #fff;
+    padding: 40px;
+    border-radius: 16px;
+    box-shadow: 0 0 30px rgba(0,0,0,0.2);
+    text-align: center;
+    width: 90%;
+    max-width: 400px;
+}
+
+.settings-menu-content h1 {
+    font-size: 32px;
+    margin-bottom: 30px;
+    color: #333;
+}
+
+.settings-item {
+    margin-bottom: 20px;
+    text-align: left;
+}
+
+.settings-item label {
+    font-size: 18px;
+    color: #333;
+}
+
+#back-from-settings-btn {
+    margin-top: 30px;
+    padding: 14px;
+    font-size: 18px;
+    font-weight: 600;
+    color: #333;
+    background: #f0f0f0;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    width: 100%;
+}
+
+#back-from-settings-btn:hover {
+    background: #e0e0e0;
+}
+
+#back-from-settings-btn:active {
+    transform: scale(0.95);
+}
+
 /* 移动端适配（屏幕宽度小于600px） */
 @media screen and (max-width: 600px) {
     body {

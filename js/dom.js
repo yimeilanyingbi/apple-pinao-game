@@ -16,4 +16,6 @@ export const dom = {
     startMenu: document.getElementById('start-menu') || document.createElement('div'),
     startBtn: document.getElementById('start-btn') || document.createElement('button'),
     settingsBtn: document.getElementById('settings-btn') || document.createElement('button'),
+    settingsMenu: document.getElementById('settings-menu') || document.createElement('div'),
+    backFromSettingsBtn: document.getElementById('back-from-settings-btn') || document.createElement('button'),
 };
