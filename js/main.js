@@ -3,7 +3,7 @@
  * @module main
  */
 import { initGame, bindClickEvent, unbindClickEvent, resetScore } from './game.js';
-import { startCountDown, restartGame, resetGameState } from './timer.js';
+import { startCountDown, restartGame, resetGameState, isGameStarted, isGameOver } from './timer.js';
 import { dom } from './dom.js';
 import { getInitTime, setInitTime, getBallSpeed, setBallSpeed } from './config.js';
 
@@ -100,4 +100,12 @@ window.onload = () => {
     if (ballSpeedInput) {
         ballSpeedInput.value = getBallSpeed();
     }
+    
+    // 添加窗口大小改变事件监听器
+    window.addEventListener('resize', () => {
+        // 只在游戏未开始时重新初始化，避免游戏过程中尺寸变化影响体验
+        if (!isGameStarted() && !isGameOver()) {
+            initGame();
+        }
+    });
 };

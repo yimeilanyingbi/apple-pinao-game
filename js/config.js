@@ -34,10 +34,6 @@ export function setInitTime(time) {
 
 /** 移动端阈值（屏幕宽度小于此值时使用移动端配置） */
 export const MOBILE_THRESHOLD = 600;
-/** 移动端单个格子尺寸（px） */
-export const MOBILE_CELL_SIZE = Math.floor((window.innerWidth - 40 - GAP * (COLS + 1)) / COLS);
-/** 移动端格子总间隙 */
-export const MOBILE_CELL_GAP = MOBILE_CELL_SIZE + GAP;
 
 /** 动画配置 */
 export const ANIMATION = {
@@ -102,12 +98,15 @@ export const GAME_CONFIG = {
  */
 export function getConfig() {
     const isMobile = window.innerWidth < MOBILE_THRESHOLD;
+    // 动态计算移动端格子尺寸，确保在窗口大小改变时能正确更新
+    const mobileCellSize = Math.floor((window.innerWidth - 40 - GAP * (COLS + 1)) / COLS);
+    
     return {
         rows: ROWS,
         cols: COLS,
-        cellSize: isMobile ? MOBILE_CELL_SIZE : CELL_SIZE,
+        cellSize: isMobile ? mobileCellSize : CELL_SIZE,
         gap: GAP,
-        cellGap: isMobile ? MOBILE_CELL_SIZE + GAP : CELL_SIZE + GAP,
+        cellGap: isMobile ? mobileCellSize + GAP : CELL_SIZE + GAP,
         isMobile
     };
 }
